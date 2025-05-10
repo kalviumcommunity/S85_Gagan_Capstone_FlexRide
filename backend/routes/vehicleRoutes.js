@@ -6,7 +6,7 @@ const router = express.Router();
 // GET 
 router.get("/", async (req, res) => {
   try {
-    const vehicles = await Vehicle.find();
+    const vehicles = await Vehicle.find().populate('owner', 'name email');
     res.status(200).json(vehicles);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch vehicles" });
@@ -41,7 +41,7 @@ router.put("/:id", async (req, res) => {
     res.status(200).json(updatedVehicle);
   } catch (err) {
     console.error("Error updating vehicle:", err.message);
-    res.status(500).json({ error: "Failed to update vehicles" });
+    res.status(500).json({ error: "Failed to update vehicle" });
   }
 });
 
