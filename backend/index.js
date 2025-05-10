@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js"; // use your reusable DB connection function
+import connectDB from "./config/db.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";
 
 dotenv.config();

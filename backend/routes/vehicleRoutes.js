@@ -13,4 +13,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+// POST a new vehicle
+router.post("/", async (req, res) => {
+  try {
+    const vehicle = new Vehicle(req.body); 
+    await vehicle.save();
+    res.status(201).json(vehicle); 
+  } catch (err) {
+    console.error("Error creating vehicle:", err.message);
+    res.status(500).json({ error: "Failed to create vehicle" });
+  }
+});
+
 export default router;
