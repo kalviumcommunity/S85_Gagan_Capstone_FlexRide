@@ -3,7 +3,7 @@ import Vehicle from "../models/Vehicle.js";
 
 const router = express.Router();
 
-// GET all vehicles
+// GET 
 router.get("/", async (req, res) => {
   try {
     const vehicles = await Vehicle.find();
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST a new vehicle
+// POST 
 router.post("/", async (req, res) => {
   try {
     const vehicle = new Vehicle(req.body); 
@@ -22,6 +22,26 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.error("Error creating vehicle:", err.message);
     res.status(500).json({ error: "Failed to create vehicle" });
+  }
+});
+
+//PUT
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedVehicle) {
+      return res.status(404).json({ error: "Vehicle not found" });
+    }
+
+    res.status(200).json(updatedVehicle);
+  } catch (err) {
+    console.error("Error updating vehicle:", err.message);
+    res.status(500).json({ error: "Failed to update vehicle" });
   }
 });
 
