@@ -41,7 +41,7 @@ router.put("/:id", async (req, res) => {
     res.status(200).json(updatedVehicle);
   } catch (err) {
     console.error("Error updating vehicle:", err.message);
-    res.status(500).json({ error: "Failed to update vehicle" });
+    res.status(500).json({ error: "Failed to update vehicles" });
   }
 });
 
