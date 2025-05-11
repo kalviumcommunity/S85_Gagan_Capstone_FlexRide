@@ -80,3 +80,5 @@ Ride-Sharing Options (multi-passenger vehicles)
 
 Created with ❤️ by Gagan
 
+
+deployed frontend-https://flexride.netlify.app/
